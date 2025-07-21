@@ -1,0 +1,747 @@
+:root {
+  --text-color: #ffffff;
+  --button-bg: rgba(255, 255, 255, 0.18);
+  --button-hover-bg: rgba(255, 255, 255, 0.3);
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.25);
+}
+
+body.dark-theme {
+  --text-color: #ffffff;
+  --button-bg: rgba(0, 0, 0, 0.35);
+  --button-hover-bg: rgba(0, 0, 0, 0.55);
+  --glass-bg: rgba(0, 0, 0, 0.35);
+  --glass-border: rgba(255, 255, 255, 0.18);
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Rajdhani', sans-serif;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  color: var(--text-color);
+}
+
+#bgVideo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+/* Top Navbar */
+#top-navbar {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(18px) saturate(160%);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  color: var(--text-color);
+  z-index: 1000;
+  border-radius: 18px;
+  width: fit-content;
+  gap: 20px;
+}
+
+/* Title */
+#nav-title {
+  font-size: 22px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.25);
+}
+
+/* Navbar Buttons */
+#nav-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+#nav-buttons button {
+  background: var(--button-bg);
+  color: var(--text-color);
+  border: 1px solid var(--glass-border);
+  padding: 8px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 13px;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(10px);
+  transition: all 0.25s ease;
+  
+}
+
+#nav-buttons button:hover {
+  background: var(--button-hover-bg);
+  transform: scale(1.05);
+}
+
+/* Glassmorphic Main Panel */
+#glass-container {
+  position: relative;
+  margin: 130px auto 40px auto;
+  width: 85%;
+  max-width: 1100px;
+  padding: 40px;
+  background: var(--glass-bg);
+  border-radius: 30px;
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(18px) saturate(160%);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.55);
+  text-align: center;
+  z-index: 1;
+}
+
+/* Headings */
+h1, h2, h3 {
+  margin: 0 0 15px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-shadow: 0 0 8px rgba(255,255,255,0.15);
+}
+
+#weather-info {
+  margin: 25px 0;
+  padding: 20px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Graph Buttons */
+#graph-buttons {
+  margin-top: 30px;
+}
+
+#graph-buttons button {
+  background: var(--button-bg);
+  color: var(--text-color);
+  border: 1px solid var(--glass-border);
+  padding: 12px 25px;
+  margin: 8px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  backdrop-filter: blur(10px);
+  transition: all 0.25s ease;
+}
+
+#graph-buttons button:hover {
+  background: var(--button-hover-bg);
+  transform: scale(1.05);
+}
+
+/* Canvas */
+canvas {
+  margin-top: 30px;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+/* Extra Sections */
+.extra-section {
+  margin-top: 50px;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px);
+}
+
+#clock-section {
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+}
+
+/* Mars Globe Section */
+#mars-globe-section {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 240px;
+  padding: 12px;
+  border-radius: 20px;
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(14px);
+  background: var(--glass-bg);
+  text-align: center;
+  z-index: 900;
+  cursor: grab;
+  transform: translate(0, 0);
+}
+
+#mars-globe-section img {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  margin-top: 12px;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
+  user-select: none;
+  pointer-events: none;
+}
+
+
+
+/* Animations */
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.fade-in {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+#graph-buttons button {
+  transition: all 0.3s ease, box-shadow 0.3s ease;
+}
+
+#graph-buttons button:hover {
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.5), 0 0 20px rgba(0, 229, 255, 0.3);
+}
+
+#graph-buttons button:active {
+  transform: scale(0.98);
+}
+body {
+  cursor: none;
+}
+
+#custom-cursor {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  background: #66fcf1;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 8px #66fcf1, 0 0 20px #66fcf1;
+}
+/* Hide default cursor */
+body {
+  cursor: none;
+}
+
+/* Custom Cursor Dot */
+#custom-cursor {
+  position: fixed;
+  width: 14px;
+  height: 14px;
+  background: #66fcf1;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 8px #66fcf1, 0 0 20px #66fcf1;
+  transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Hover on Button - expand + glow */
+button:hover ~ #custom-cursor {
+  transform: translate(-50%, -50%) scale(2);
+  background: #ff4081;
+  box-shadow: 0 0 10px #ff4081, 0 0 20px #ff4081, 0 0 30px #ff4081;
+}
+
+/* Click effect */
+button:active ~ #custom-cursor {
+  transform: translate(-50%, -50%) scale(0.8);
+  box-shadow: 0 0 12px #ffffff, 0 0 20px #ff4081;
+}
+/* Hide system cursor globally */
+body, button, a, input, select, textarea, canvas {
+  cursor: none !important;
+}
+
+/* Remove pointer on hover too */
+button:hover, button:active, a:hover, a:active {
+  cursor: none !important;
+}
+#mission-archive {
+  margin-top: 40px;
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(14px);
+  background: var(--glass-bg);
+  text-align: left;
+}
+
+#mission-archive h2 {
+  margin-bottom: 15px;
+  font-size: 22px;
+  color: var(--text-color);
+}
+
+#sol-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 10px 0;
+}
+
+.sol-card {
+  min-width: 180px;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid var(--glass-border);
+  background: rgba(255,255,255,0.07);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  color: var(--text-color);
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.sol-card:hover {
+  transform: scale(1.05);
+  background: rgba(255,255,255,0.12);
+}
+
+.sol-card p {
+  margin: 6px 0;
+  font-size: 14px;
+}
+
+
+
+#mars-globe-container {
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+  transition: all 0.5s ease;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(255,255,255,0.2);
+}
+
+#mars-3d-globe-section {
+  position: relative;
+  margin: 20px;
+  text-align: center;
+  transition: all 0.5s ease;
+}
+#mars-globe-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  padding: 0 10px;
+}
+
+#mars-globe-header h2 {
+  font-family: Orbitron, sans-serif;
+  color: #fff;
+  margin: 0;
+}
+
+
+#mars-globe-container {
+  width: 279px;
+  height: 299px;
+  margin: 0 auto;
+  transition: all 0.5s ease;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(255,255,255,0.2);
+}
+
+
+
+#toggle-globe-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: url('assets/fullscreen-icon.svg') center center / contain no-repeat;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#toggle-globe-btn:hover {
+  filter: brightness(1.3);
+}
+/* Maximize style */
+#mars-3d-globe-section.fullscreen {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  background: rgba(0,0,0,0.95);
+  z-index: 9999;
+  padding: 20px;
+  border-radius: 25px;
+}
+
+
+#mars-3d-globe-section.fullscreen #mars-globe-container {
+  width: calc(100% - 40px);
+  height: calc(100% - 70px);
+}
+#mars-3d-globe-section.fullscreen #toggle-globe-btn {
+  background: url('assets/minimize-icon.svg') center center / contain no-repeat;
+}
+.side-toggle {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 80px;
+  border-radius: 40px 0 0 40px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  z-index: 999;
+}
+
+.side-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.fullscreen .side-toggle {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+/* Half-cylinder fullscreen toggle button */
+.fullscreen-toggle {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 96px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+.fullscreen-toggle span {
+  color: white;
+  font-size: 24px;
+  user-select: none;
+  transition: transform 0.3s ease;
+}
+
+.fullscreen-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+#mars-3d-globe-section.fullscreen {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1098px;
+  height: 654px;
+  max-width: 90vw;
+  max-height: 90vh;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  padding: 20px;
+  border-radius: 24px;
+  transition: all 0.5s ease;
+}
+#mars-side-panel {
+  position: fixed;
+  right: 0;
+  top: 50px;
+  width: 0;
+  height: 100vh;
+  background: rgba(10, 10, 10, 0.8);
+  overflow: hidden;
+  transition: width 0.4s ease;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+#mars-side-panel.open {
+  width: 300px;
+  pointer-events: auto;
+}
+
+#mars-globe-canvas {
+  width: 100%;
+  height: 100%;
+}
+#mars-side-panel {
+  -webkit-user-drag: none;
+  -webkit-app-region: no-drag;
+}
+#mars-side-panel {
+  position: fixed;
+  top: 50px;
+  right: 0;
+  width: 0;
+  height: 100vh;
+  background: rgba(10, 10, 10, 0.85);
+  overflow: hidden;
+  transition: width 0.4s ease;
+  z-index: 9999;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  -webkit-app-region: no-drag;
+}
+
+#mars-side-panel.open {
+  width: 300px;
+  pointer-events: auto;
+}
+
+#mars-globe-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+#rover-gallery-section {
+  margin-top: 30px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+}
+
+.carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding: 10px 0;
+  scroll-snap-type: x mandatory;
+}
+
+.carousel img {
+  height: 200px;
+  border-radius: 10px;
+  scroll-snap-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.carousel img:hover {
+  transform: scale(1.05);
+}
+
+#lightbox {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.9);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#lightbox img {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 10px;
+}
+
+#lightbox.hidden {
+  display: none;
+}
+
+#lightbox-close {
+  position: absolute;
+  top: 20px; right: 30px;
+  color: white;
+  font-size: 2em;
+  cursor: pointer;
+}
+.futuristic-button {
+  background: rgba(255, 100, 100, 0.2);
+  color: #fff;
+  border: 1px solid #ff5555;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: 0.3s;
+}
+
+#mars-surface-container {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: black;
+  z-index: 9999;
+}
+
+#mars-globe {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.crater-info-panel {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+}
+.futuristic-button {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  padding: 12px 20px;
+  background: rgba(255, 0, 120, 0.2);
+  color: #fff;
+  font-weight: bold;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 0, 120, 0.6);
+  border-radius: 12px;
+  cursor: pointer;
+  z-index: 999;
+  transition: all 0.3s ease;
+}
+.futuristic-button:hover {
+  background: rgba(255, 0, 120, 0.5);
+}
+
+.news-panel {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 400px;
+  height: 100%;
+  background: rgba(10, 10, 30, 0.8);
+  backdrop-filter: blur(15px);
+  box-shadow: -4px 0 20px rgba(255, 0, 120, 0.5);
+  transition: right 0.4s ease-in-out;
+  color: white;
+  padding: 20px;
+  overflow-y: auto;
+  z-index: 998;
+}
+
+.news-panel.open {
+  right: 0;
+}
+
+.news-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.news-header h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #ff0078;
+}
+
+#close-news-panel {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.news-content p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Full screen Cesium container */
+#cesiumContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  display: none;
+  
+}
+
+/* Ensure Cesium canvas is not above UI */
+#cesiumContainer canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+html, body, #cesiumContainer {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+
+/* UI wrapper that allows interaction with buttons */
+#ui-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10000;
+}
+
+/* Button styling with futuristic glass look */
+#showCratersBtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 14px 30px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 18px;
+  color: white;
+  background: rgba(255, 69, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(255, 69, 0, 0.75);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  pointer-events: auto;
+}

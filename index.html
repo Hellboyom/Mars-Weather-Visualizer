@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mars Weather Visualizer</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@400;600&display=swap"
+    rel="stylesheet" />
+
+  <!-- External Libraries -->
+  <link rel="stylesheet" href="https://cesium.com/downloads/cesiumjs/releases/1.113/Build/Cesium/Widgets/widgets.css" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.113/Build/Cesium/Cesium.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
+  <script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+  <div id="glassUI">
+    <!-- Top Navbar -->
+    <div id="top-navbar">
+      <div id="nav-title">Mars Weather Visualizer</div>
+      <div id="nav-buttons">
+        <button onclick="window.scrollTo(0, 0)">Top</button>
+        <button onclick="refreshData()">Refresh</button>
+      </div>
+    </div>
+
+    <!-- Background Video -->
+    <video autoplay muted loop playsinline id="bgVideo">
+      <source src="assets/Dunes.mp4" type="video/mp4" />
+    </video>
+
+    <!-- Mars Side Panel Toggle -->
+    <button id="side-toggle-btn" class="side-toggle">&lt;</button>
+
+    <!-- Mars 3D Side Panel -->
+    <div id="mars-side-panel">
+      <div id="mars-globe-canvas"></div>
+    </div>
+
+    <!-- Main Glass UI -->
+    <div id="glass-container">
+      <h1>Mars Weather Visualizer 🌌</h1>
+      <h3 id="status"></h3>
+
+      <!-- Mars Weather Info -->
+      <div id="weather-info">
+        <h2>Latest Sol Weather:</h2>
+        <p id="sol"></p>
+        <p id="temperature"></p>
+        <p id="pressure"></p>
+        <p id="wind"></p>
+      </div>
+
+      <!-- Weather Graph Buttons -->
+      <div id="graph-buttons">
+        <button onclick="renderChart('temp')">Temperature</button>
+        <button onclick="renderChart('pressure')">Pressure</button>
+        <button onclick="renderChart('wind')">Wind</button>
+        <button onclick="renderChart('forecast')">Forecast</button>
+      </div>
+
+      <!-- Chart Area -->
+      <canvas id="dataChart" width="400" height="200"></canvas>
+
+      <!-- Mission Archive -->
+      <div id="mission-archive">
+        <h2>Mars Mission Archive (Past Sol Logs)</h2>
+        <div id="sol-cards"></div>
+      </div>
+
+      <!-- Live Clocks -->
+      <div id="clock-section">
+        <h2>Live Clocks</h2>
+        <p>Earth UTC Time: <span id="earthTime"></span></p>
+        <p>Mars Sol Time: <span id="marsTime"></span></p>
+      </div>
+    </div>
+
+
+
+
+    <!-- Mars News Panel -->
+    <button id="mars-news-btn" class="futuristic-button">📰 Latest Mars News</button>
+    <div id="mars-news-panel" class="news-panel hidden">
+      <div class="news-header">
+        <h2>Mars News</h2>
+        <button id="close-news-panel">&times;</button>
+      </div>
+      <div id="news-content" class="news-content">
+        <p>Loading latest Mars news...</p>
+      </div>
+    </div>
+  </div>
+  <!-- Custom Cursor -->
+  <div id="custom-cursor"></div>
+
+  <!-- CesiumJS Mars 3D Globe -->
+  <div id="cesiumContainer" style="width: 100%; height: 500px;">
+    <button id="backToUIBtn"
+      style="display:none; position:absolute; top: 60px; right:20px; z-index:1100; padding:10px 15px; background:#222; color:white; border:none; border-radius:5px; cursor:pointer;">
+      ⬅ Back to UI
+    </button>
+
+  </div>
+
+
+
+
+
+  <div id="uiLayer">
+    <button id="showCratersBtn">Show Craters</button>
+  </div>
+  <script src="app.js"></script>
+
+
+</body>
+
+</html>

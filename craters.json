@@ -1,0 +1,27 @@
+[
+  { 
+    "name": "Gale Crater", 
+    "lat": -5.4,
+    "lon": 137.8, 
+    "diameter": 154 
+  },
+  { 
+    "name": "Jezero Crater", 
+    "lat": 18.38, 
+    "lon": 77.58, 
+    "diameter": 45
+  },
+  { 
+    "name": "Orcus Patera", 
+    "lat": 14.7, 
+    "lon": 177.3, 
+    "diameter": 380 
+  },
+  {
+     "name": "Hellas Planitia", 
+    "lat": -42.4, 
+    "lon": 70.5, 
+    "diameter": 2300 
+  }
+
+]
