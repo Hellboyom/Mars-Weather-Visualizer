@@ -38,7 +38,8 @@
 
 ## 🖥️ Demo Preview
 
-> ![Mars Weather Visualizer UI](https://your-image-preview-link.com) <!-- Replace with preview GIF or image -->
+> ![Mars Weather Visualizer UI]<img width="1437" height="860" alt="Screenshot 2025-07-22 at 8 25 54 AM" src="https://github.com/user-attachments/assets/4e375e4c-4798-44d9-ad6b-c32d967cc02e" />
+ <!-- Replace with preview GIF or image -->
 
 ---
 
